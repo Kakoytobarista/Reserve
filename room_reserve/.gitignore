@@ -1,0 +1,7 @@
+accounts/__pycache__/
+accounts/migrations/__pycache__/
+reserve/__pycache__/
+reserve/migrations/__pycache__/
+reserve/static/__pycache__/
+reserve/static/reserve/__pycache__/
+room_reserve/__pycache__/

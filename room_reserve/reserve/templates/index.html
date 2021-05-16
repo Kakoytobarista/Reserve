@@ -1,0 +1,43 @@
+{% load static %}
+<!doctype html>
+<html lang="ru">
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'reserve/css/style.css' %}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+    <div>
+        {% block sidebar %}
+        <div class="btn btn-two">
+    <span>Reserve</span>
+  </div>
+        <div>
+            <a href="/logout" class="btn btn-2">Log out</a>
+        </div>
+        {% endblock %}
+    </div>
+    <div>
+        <span>
+        <h1><strong>This microservice <br> is made <br> exclusively for <br>booking meeting <br> rooms.</strong></h1>
+            <div class="col-5"><img src="{% static 'reserve/img/logo.svg' %}" alt="logo">
+            </div>
+        </span>
+        <div class="wrap">
+            <form action="/booking">
+            <button class="button">Book now</button>
+            </form>
+        </div>
+        <div>
+            <h1><strong>Available meeting <br> rooms:</strong></h1>
+            <ol class="ball">
+              <li><a href="#">Moscow</a></li>
+              <li><a href="#">Saint Petersburg</a></li>
+              <li><a href="#">Nizhny Novgorod</a></li>
+            </ol>
+        </div>
+    </div>
+</body>
+</html>

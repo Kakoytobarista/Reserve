@@ -15,7 +15,8 @@
     <span>Reserve</span>
   </div>
         <div>
-            <a href="/logout" class="btn btn-2">Log out</a>
+            <li><a href="/logout" class="btn btn-2">Log out</a></li>
+            <li><a href="/password-change/" class="btn btn-3">Password change</a></li>
         </div>
         {% endblock %}
     </div>
@@ -32,8 +33,9 @@
         </div>
         <div>
             <h1><strong>Available meeting <br> rooms:</strong></h1>
+            {{ rooms|safe }}
             <ol class="ball">
-              <li><a href="#">Moscow</a></li>
+              <li><a href="">Moscow</a></li>
               <li><a href="#">Saint Petersburg</a></li>
               <li><a href="#">Nizhny Novgorod</a></li>
             </ol>

@@ -5,3 +5,4 @@ reserve/migrations/__pycache__/
 reserve/static/__pycache__/
 reserve/static/reserve/__pycache__/
 room_reserve/__pycache__/
+../.idea/Reserve.iml

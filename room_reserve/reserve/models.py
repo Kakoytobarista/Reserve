@@ -16,11 +16,14 @@ class Time(models.Model):
         return self.time_date
 
 
-# class Login(models.Model):
-#     login = models.CharField(max_length=50)
-#     password = models.CharField(max_length=15)
-#
-#     @staticmethod
-#     def get_absolute_url(request):
-#         return render(request, 'reserve/reserve_update_form.html')
-#
+reserve_rooms = [
+    {
+        'name': 'Moscow',
+
+    },
+    {
+        'name': 'Saint-Petersburg',
+    },
+    {
+        'name': 'Nighniy_Novgorod'
+    }]

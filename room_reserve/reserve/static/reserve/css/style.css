@@ -3,7 +3,7 @@ body {
 }
 
 .btn {
-    margin-left: 60px;
+    margin-left: 80px;
     margin-top: 50px;
     width: 160px;
     background-attachment: revert;
@@ -15,8 +15,17 @@ body {
     position: absolute; /* or position: absolute; */
     top: 0;
     right: 0;
-    margin-right: 50px;
-    margin-top: 40px;
+    margin-right: 100px;
+    /*margin-top: 40px;*/
+    color: lightslategray;
+	transition: all 0.5s;
+
+}
+
+.btn-3 {
+    position: absolute; /* or position: absolute; */
+    right: 0;
+    top:0;
     color: lightslategray;
 	transition: all 0.5s;
 

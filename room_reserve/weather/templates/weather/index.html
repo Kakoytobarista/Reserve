@@ -1,0 +1,25 @@
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+</head>
+<body>
+
+    <link rel="stylesheet" href="{% static 'weather/css/styles.css' %}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+    <form action="{% url 'weather_page' %}" method="post">
+        <div class="result_text">
+                <h1>{{ weather }}</h1>
+        </div>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div class='button_case'>
+            <button class='btn btn-primary' type="submit">Search</button>
+            <button class="btn btn-primary" type="button">Another button</button>
+        </div>
+
+    </form>
+
+</body>

@@ -1,0 +1,15 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Roboto", "Lucida Grande", Verdana, Arial, sans-serif;
+}
+
+.result_text {
+    font-family: 'Nunito', sans-serif;
+
+}
+.button_case {
+    margin-left: 20px;
+
+}

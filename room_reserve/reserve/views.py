@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import reserve_rooms
+from django.http import HttpResponseNotFound
 
 
 def index(request):
@@ -22,9 +23,17 @@ def go_booking_page(request):
 
 
 def room_page(request, pk):
+    if int(pk) > 3:
+        return redirect('index', permanent=True)
+
     name = reserve_rooms[pk]['name']
     context = {
         'name': name
     }
+    print(pk)
+
     return render(request, 'reserve/booking_page.html', context)
 
+
+def pageNotFound(request, exception):
+    return HttpResponseNotFound('<h1>Слушай брат, нахуй ты сюда зашел, иди на правильный редирект,<strong>долбаеб</strong></h1>')

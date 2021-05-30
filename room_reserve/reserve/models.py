@@ -1,19 +1,21 @@
 from django.db import models
-from django.shortcuts import render
 
 
-class Room(models.Model):
-    rooms = models.CharField(max_length=100)
-
-    def __str__(self):
-        return self.rooms
-
-
-class Time(models.Model):
-    time_date = models.DateTimeField('date_reserve')
+class Rooms(models.Model):
+    name = models.CharField(verbose_name='Room', max_length=300)
+    info = models.CharField(verbose_name='Info about room', max_length=300)
 
     def __str__(self):
-        return self.time_date
+        return self.name
+
+
+class Reception(models.Model):
+    date = models.DateTimeField(verbose_name='Date of reserve')
+    time = models.CharField(verbose_name='Time', max_length=5)
+    reserver = models.CharField(verbose_name='Reserver', max_length=300)
+
+    def __str__(self):
+        return 'Прием № %s' % self.id
 
 
 reserve_rooms = [

@@ -16,7 +16,7 @@ SECRET_KEY = 'qu+7x)tdciso*@mm64_r1hj8y3a)_c+tqtw)eef-sj+q041o2m'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1']
 
 
 # Application definition
@@ -32,6 +32,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'weather.apps.WeatherConfig',
+    'workers.apps.WorkersConfig'
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
@@ -122,9 +124,10 @@ LOGIN_REDIRECT_URL = "/main"
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [
+STATIC_ROOT = [
     os.path.join(BASE_DIR, "static"),
 ]
+STATICFILES_DIRS = []
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

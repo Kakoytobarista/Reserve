@@ -6,3 +6,9 @@ reserve/static/__pycache__/
 reserve/static/reserve/__pycache__/
 room_reserve/__pycache__/
 ../.idea/Reserve.iml
+weather/__pycache__/
+weather/migrations/__pycache__/
+workers/__pycache__/
+workers/migrations/__pycache__/
+../.idea/misc.xml
+../.idea/Reserve.iml

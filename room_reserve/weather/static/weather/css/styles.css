@@ -1,15 +1,25 @@
 body {
     display: flex;
-    justify-content: center;
+    justify-content: center; /*Центрирование по горизонтали*/
     align-items: center;
     font-family: "Roboto", "Lucida Grande", Verdana, Arial, sans-serif;
+
+
 }
 
 .result_text {
     font-family: 'Nunito', sans-serif;
+    position: absolute;
+    margin-top: 200px;
 
 }
 .button_case {
     margin-left: 20px;
 
+}
+
+.action-counter {
+    margin-bottom: 350px;
+    position: absolute;
+    margin-left: 20px;
 }

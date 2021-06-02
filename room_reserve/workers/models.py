@@ -9,6 +9,7 @@ class Workers(models.Model):
     time_create = models.DateTimeField(auto_now_add=True)
     time_update = models.DateTimeField(auto_now=True)
     is_published = models.BooleanField(default=True)
+    cat = models.ForeignKey('Category', on_delete=models.PROTECT, null=True)
 
     def __str__(self):
         return self.title
@@ -17,8 +18,8 @@ class Workers(models.Model):
         return reverse('post', kwargs={'post_id': self.pk})
 
     class Meta:
-        verbose_name = 'Worker'
-        verbose_name_plural = 'Workers'
+        verbose_name = 'Worker of PM'
+        verbose_name_plural = 'Workers of PM'
         ordering = ['time_create', 'title']
 
 
@@ -32,6 +33,6 @@ class Category(models.Model):
         return reverse('category', kwargs={'cat_id': self.pk})
 
     class Meta:
-        verbose_name = 'Category'
-        verbose_name_plural = 'Categories'
-        ordering = ['id']
+        verbose_name = 'Position of work'
+        verbose_name_plural = 'Positions of work'
+

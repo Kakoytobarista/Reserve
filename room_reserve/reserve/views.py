@@ -1,22 +1,15 @@
 from django.shortcuts import render, redirect
-from .models import reserve_rooms
-from django.http import HttpResponseNotFound
 
-
-def index(request):
-    return render(request, 'index.html')
+from .models import *
+from django.http import HttpResponseNotFound, HttpResponse
 
 
 def go_booking_page(request):
-    rooms = ''
-
-    for i in range(len(reserve_rooms)):
-        booking_form = f'<a href="booking/{i}/">{reserve_rooms[i]["name"]}</a><br>'
-
-        rooms += booking_form
+    cities = Rooms.objects.all()
 
     context = {
-        'rooms': rooms
+        'cities': cities,
+
 
     }
     return render(request, 'index.html', context)
@@ -35,5 +28,10 @@ def room_page(request, pk):
     return render(request, 'reserve/booking_page.html', context)
 
 
+def show_room(request, room_id):
+    return HttpResponse(f'Hello gnida{room_id}')
+
+
 def pageNotFound(request, exception):
-    return HttpResponseNotFound('<h1>Слушай брат, нахуй ты сюда зашел, иди на правильный редирект,<strong>долбаеб</strong></h1>')
+    return HttpResponseNotFound('<h1>Слушай брат, нахуй ты сюда зашел, иди на правильный редирект,'
+                                '<strong>долбаеб</strong></h1>')

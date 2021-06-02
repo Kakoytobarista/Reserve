@@ -2,6 +2,7 @@ body {
     background: white;
 }
 
+
 .btn {
     margin-left: 80px;
     margin-top: 50px;
@@ -15,10 +16,9 @@ body {
     position: absolute; /* or position: absolute; */
     top: 0;
     right: 0;
-    margin-right: 100px;
-    /*margin-top: 40px;*/
+    margin-right: 180px;
     color: lightslategray;
-	transition: all 0.5s;
+
 
 }
 
@@ -27,9 +27,22 @@ body {
     right: 0;
     top:0;
     color: lightslategray;
-	transition: all 0.5s;
+
+    margin-right: 60px;
 
 }
+
+.btn-4 {
+    position: absolute; /* or position: absolute; */
+    right: 0;
+    top: 0;
+    color: lightslategray;
+
+    margin-right: 320px;
+    margin-top: 57px;
+
+}
+
 
 .btn-two {
     background-color: black;

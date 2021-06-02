@@ -1,12 +1,14 @@
 {% load static %}
-<!doctype html>
+
+
 <html lang="ru">
 <head>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="{% static 'reserve/css/style.css' %}">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
     <meta charset="UTF-8">
-    <title>{% block title %}{% endblock %}</title>
+    <title>{% block title %}
+        {% endblock %}</title>
 </head>
 <body>
     <div>
@@ -14,10 +16,11 @@
         <div class="btn btn-two">
     <span>Reserve</span>
   </div>
-        <div>
-            <li><a href="/logout" class="btn btn-2">Log out</a></li>
-            <li><a href="/password-change/" class="btn btn-3">Password change</a></li>
-        </div>
+        <ul class="nav_bar">
+            <li><a href="{% url 'logout' %}" class="btn btn-2">Log out</a></li>
+            <li><a href="{% url 'password_change'%}" class="btn btn-3">Password change</a></li>
+            <li><a href="{% url 'weather_page' %}" class="btn-4">Weather</a></li>
+        </ul>
         {% endblock %}
     </div>
     <div>
@@ -34,7 +37,9 @@
         <div>
             <h1><strong>Available meeting <br> rooms:</strong></h1>
             <ol class="ball">
-                {{ rooms|safe }}
+                {% for c in cities %}
+                <li><a href="{{ c.get_absolute_url }}">{{ c }}</a></li>
+                {% endfor %}
             </ol>
         </div>
     </div>

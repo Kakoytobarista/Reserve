@@ -8,11 +8,11 @@
 
     <link rel="stylesheet" href="{% static 'weather/css/styles.css' %}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-
+    <div class="action-counter"><img src="{% static 'weather/img/cloud.png' %}" alt="logo_weather"></div>
+    <div class="result_text"><h1>{{ weather }}</h1>
+    </div>
     <form action="{% url 'weather_page' %}" method="post">
-        <div class="result_text">
-                <h1>{{ weather }}</h1>
-        </div>
+
         {% csrf_token %}
         {{ form.as_p }}
         <div class='button_case'>

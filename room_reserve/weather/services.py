@@ -14,5 +14,8 @@ def what_weather(city):
     except requests.ConnectionError:
         return 'Try again later, network fail'
 
-    while int() not in response:
-        return response.text.strip()
+    if response.status_code == 200:
+        return response.text
+
+    else:
+        return f'try again later'

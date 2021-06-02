@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 
 class Rooms(models.Model):
@@ -7,6 +8,9 @@ class Rooms(models.Model):
 
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+        return reverse('room', kwargs={'room_id': self.pk})
 
 
 class Reception(models.Model):

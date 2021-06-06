@@ -9,7 +9,7 @@ def index(request):
     result = ''
 
     if request.method == 'POST':
-        selected_city = request.POST
+        selected_city = request.POST['city_field']
 
         result += what_weather(selected_city)
 

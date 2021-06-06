@@ -1,5 +1,2 @@
+from django.contrib.auth.views import LoginView
 from django.shortcuts import render
-
-
-def login_index(request):
-    return render(request, 'accounts/index.html')

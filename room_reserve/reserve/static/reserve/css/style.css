@@ -19,29 +19,20 @@ body {
     margin-right: 180px;
     color: lightslategray;
 
-
 }
 
-.btn-3 {
-    position: absolute; /* or position: absolute; */
-    right: 0;
-    top:0;
-    color: lightslategray;
-
-    margin-right: 60px;
-
-}
-
-.btn-4 {
+.btn-5 {
     position: absolute; /* or position: absolute; */
     right: 0;
     top: 0;
     color: lightslategray;
 
-    margin-right: 320px;
+    margin-right: 380px;
     margin-top: 57px;
 
+
 }
+
 
 
 .btn-two {
@@ -116,7 +107,7 @@ h1 {
 }
 
 .button {
-    margin-top: 50px;
+    margin-top: 80px;
     width: 500px;
     margin-left: 450px;
     min-width: 300px;
@@ -203,38 +194,54 @@ button:hover::after, button:focus::after {
 }
 
 .ball a {
-width: 100%;
-color: #808285;
-text-decoration: none;
-display: inline-block;
-padding-left: 25px;
-height: 44px;
-line-height: 44px;
-font-size: 20px;
-position: relative;
-transition: .3s linear;
+    width: 100%;
+    color: #808285;
+    text-decoration: none;
+    display: inline-block;
+    padding-left: 25px;
+    height: 44px;
+    line-height: 44px;
+    font-size: 20px;
+    position: relative;
+    transition: .3s linear;
 }
 .ball a:before {
-content: "";
-width: 30px;
-height: 30px;
-border-radius: 50%;
-background: #425273;
-position: absolute;
-left: -30px;
-top: 7px;
+    content: "";
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: #425273;
+    position: absolute;
+    left: -30px;
+    top: 7px;
 }
 .ball li {position: relative;}
 .ball li:before {
-content: "";
-width: 20px;
-height: 20px;
-border-radius: 50%;
-background: #EC351D;
-position: absolute;
-top: 12px;
-left: -30px;
-z-index: 2;
-transition: .4s ease-in-out;
+    content: "";
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #EC351D;
+    position: absolute;
+    top: 12px;
+    left: -30px;
+    z-index: 2;
+    transition: .4s ease-in-out;
 }
 .ball li:hover:before {left: -20px;}
+
+
+.topnav {
+    float: right;
+    display: inline-block;
+    position: relative;
+    padding-top: 47px;
+    padding-right: 40px;
+
+
+}
+.topnav a {
+    color: black;
+    width : 100px;
+    display: inline-flex;
+}

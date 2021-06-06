@@ -1,5 +1,6 @@
 {% load static %}
 
+{% load reserve_tags %}
 
 <html lang="ru">
 <head>
@@ -16,11 +17,12 @@
         <div class="btn btn-two">
     <span>Reserve</span>
   </div>
-        <ul class="nav_bar">
-            <li><a href="{% url 'logout' %}" class="btn btn-2">Log out</a></li>
-            <li><a href="{% url 'password_change'%}" class="btn btn-3">Password change</a></li>
-            <li><a href="{% url 'weather_page' %}" class="btn-4">Weather</a></li>
-        </ul>
+        <div class="topnav">
+            <a href="{% url 'logout' %}">Log out</a>
+            <a href="{% url 'password_change'%}">Password change</a>
+            <a href="{% url 'weather_page' %}">Weather</a>
+            <a href="{% url 'workers' %}">Workers</a>
+        </div>
         {% endblock %}
     </div>
     <div>
@@ -37,8 +39,9 @@
         <div>
             <h1><strong>Available meeting <br> rooms:</strong></h1>
             <ol class="ball">
-                {% for c in cities %}
-                <li><a href="{{ c.get_absolute_url }}">{{ c }}</a></li>
+                {% get_rooms as rooms %}
+                {% for r in rooms %}
+                <li><a href="{{ r.get_absolute_url }}">{{ r }}</a></li>
                 {% endfor %}
             </ol>
         </div>

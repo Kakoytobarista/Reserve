@@ -12,3 +12,6 @@ workers/__pycache__/
 workers/migrations/__pycache__/
 ../.idea/misc.xml
 ../.idea/Reserve.iml
+workers/templatetags/__pycache__/
+reserve/templatetags/__pycache__/
+reserve/static/reserve/img/

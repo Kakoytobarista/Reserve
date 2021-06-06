@@ -10,26 +10,20 @@ class Rooms(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse('room', kwargs={'room_id': self.pk})
+        return reverse('reception', kwargs={'reserver_id': self.pk})
+
+    class Meta:
+        verbose_name_plural = "Rooms"
+        verbose_name = "Room"
 
 
 class Reception(models.Model):
     date = models.DateTimeField(verbose_name='Date of reserve')
     time = models.CharField(verbose_name='Time', max_length=5)
-    reserver = models.CharField(verbose_name='Reserver', max_length=300)
+    reserver_name = models.CharField(verbose_name='Full name', max_length=200)
+    reception_info = models.CharField(verbose_name='Info about reserver', max_length=1000)
+    reserver = models.ForeignKey(Rooms, verbose_name='Reserver ', on_delete=models.PROTECT)
 
     def __str__(self):
         return 'Прием № %s' % self.id
 
-
-reserve_rooms = [
-    {
-        'name': 'Moscow',
-
-    },
-    {
-        'name': 'Saint-Petersburg',
-    },
-    {
-        'name': 'Nighniy_Novgorod'
-    }]

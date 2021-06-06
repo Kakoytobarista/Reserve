@@ -2,9 +2,11 @@ from django.urls import path
 from . import views
 from .views import pageNotFound
 
+
 urlpatterns = [
-    path('main/', views.go_booking_page, name='index'),
-    path('main/booking/<int:room_id>/', views.show_room, name='room')
+    path('main/', views.index, name='index'),
+    path('main/booking/<int:reserver_id>/', views.ReceptionView.as_view(), name='reception'),
+    # url(r'^date_from_ajax/$', 'app.views.date_from_ajax', name='date_from_ajax'),
 ]
 
 handler404 = pageNotFound

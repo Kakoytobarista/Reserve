@@ -3,22 +3,18 @@ from django.shortcuts import render, HttpResponse
 
 from .models import *
 
-menu = [{'title': 'О сайте', 'url_name': 'about'},
-        {'title': 'Добавить статью', 'url_name': 'add_page'},
-        {'title': 'Обратная связь', 'url_name': 'contact'},
-        {'title': 'Войти', 'url_name': 'login'}
+menu = [{'title': 'About this app', 'url_name': 'about'},
+        {'title': 'Add worker', 'url_name': 'add_page'},
+        {'title': 'Feedback', 'url_name': 'contact'},
+        {'title': 'Back to page reserve', 'url_name': 'index'},
         ]
 
 
 def index(request):
-    posts = Workers.objects.all()
-    cats = Category.objects.all()
 
     context = {
         'title': 'Главная страница',
         'menu': menu,
-        'posts': posts,
-        'cats': cats,
         'cat_selected': 0,
     }
 
@@ -49,17 +45,10 @@ def show_post(request, post_id):
 
 
 def show_category(request, cat_id):
-    posts = Workers.objects.filter(cat_id=cat_id)
-    cats = Category.objects.all()
-
-    if len(posts) == 0:
-        raise Http404()
 
     context = {
         'title': 'Отображение по разделам',
         'menu': menu,
-        'posts': posts,
-        'cats': cats,
         'cat_selected': cat_id,
     }
 

@@ -10,7 +10,10 @@ class Rooms(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse('reception', kwargs={'reserver_id': self.pk})
+        return reverse('reception', kwargs={
+            'reserver_id': self.pk
+        }
+                       )
 
     class Meta:
         verbose_name_plural = "Rooms"

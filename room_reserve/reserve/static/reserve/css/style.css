@@ -97,11 +97,9 @@ h1 {
 
 .col-5 {
     position: absolute;
-    bottom: 170px;/* Положение от правого края */
+    bottom: 120px;/* Положение от правого края */
     line-height: 1px;
     right: 0;
-
-
 
 
 }

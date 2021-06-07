@@ -1,17 +1,18 @@
 from django.http import HttpResponseNotFound, Http404
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render, HttpResponse, get_object_or_404, redirect
 
+from .forms import *
 from .models import *
 
-menu = [{'title': 'About this app', 'url_name': 'about'},
-        {'title': 'Add worker', 'url_name': 'add_page'},
-        {'title': 'Feedback', 'url_name': 'contact'},
-        {'title': 'Back to page reserve', 'url_name': 'index'},
-        ]
+menu = [
+    {'title': 'About this app', 'url_name': 'about'},
+    {'title': 'Add worker', 'url_name': 'add_page'},
+    {'title': 'Feedback', 'url_name': 'contact'},
+    {'title': 'Back to page reserve', 'url_name': 'index'},
+]
 
 
 def index(request):
-
     context = {
         'title': 'Главная страница',
         'menu': menu,
@@ -23,13 +24,31 @@ def index(request):
 
 def about(request):
     context = {
-        'title': 'О работниках'
+        'title': 'О работниках',
+        'menu': menu
     }
     return render(request, 'workers/about.html', context)
 
 
-def addpage(request):
-    return HttpResponse('Add article')
+def add_page(request):
+    if request.method == "POST":
+        form = AddPostForm(request.POST)
+        if form.is_valid():
+
+            try:
+                Workers.objects.create(**form.cleaned_data)
+                return redirect('workers')
+
+            except:
+                form.add_error(None, 'Error add post')
+
+    else:
+        form = AddPostForm()
+
+    return render(request, 'workers/add_page.html',
+                  {'menu': menu,
+                   'title': 'Add worker',
+                   'form': form})
 
 
 def contact(request):
@@ -40,16 +59,27 @@ def pageNotFound(request, exception):
     return HttpResponseNotFound('<h1>Page not found</h1>')
 
 
-def show_post(request, post_id):
-    return HttpResponse(f'Hello gnida{post_id}')
+def show_post(request, post_slug):
+    post = get_object_or_404(Workers, slug=post_slug)
+
+    context = {
+        'post': post,
+        'menu': menu,
+        'title': post.title,
+        'cat_selected': post.cat_id,
+
+    }
+
+    return render(request, 'workers/post.html', context=context)
 
 
-def show_category(request, cat_id):
+def show_category(request, cat_slug):
+    cat = get_object_or_404(Category, slug=cat_slug)
 
     context = {
         'title': 'Отображение по разделам',
         'menu': menu,
-        'cat_selected': cat_id,
+        'cat_selected': cat.id,
     }
 
     return render(request, 'workers/index.html', context=context)

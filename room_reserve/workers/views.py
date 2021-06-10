@@ -32,15 +32,11 @@ def about(request):
 
 def add_page(request):
     if request.method == "POST":
-        form = AddPostForm(request.POST)
+        form = AddPostForm(request.POST, request.FILES)
         if form.is_valid():
 
-            try:
-                Workers.objects.create(**form.cleaned_data)
-                return redirect('workers')
-
-            except:
-                form.add_error(None, 'Error add post')
+            form.save()
+            return redirect('workers')
 
     else:
         form = AddPostForm()

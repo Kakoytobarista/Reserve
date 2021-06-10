@@ -1,12 +1,18 @@
 {% load static %}
 
-<head>
-    <meta charset="UTF-8">
-    <title>{{ title }}</title>
-</head>
-<body>
-  <form action="" class="form-inline" method="post" enctype="multipart/form-data">
-  {% csrf_token %}
-    {{ selected_date.as_p }}
+{% block content %}
+<h1>{{ title }}</h1>
+<form action="{% url 'reception' 1 %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
 
-  </form>
+    <div class="form-error">{{ form.non_fields_errors }}</div>
+
+    {% for f in form %}
+    <p><label class="form_label" for="{{ f.name.id_for_label }}">{{ f.label  }}: </label>{{ f }}</p>
+    <div class="form-error">{{ f.errors }}</div>
+    {% endfor %}
+
+    <button type="submit">Add</button>
+
+</form>
+{% endblock %}

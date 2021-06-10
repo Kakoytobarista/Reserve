@@ -1,8 +1,14 @@
 from django import forms
+from .models import Reception
 
 
-class ReceptionForm(forms.Form):
-    date_of_reserve = forms.SelectDateWidget()
-    time = forms.SplitDateTimeWidget()
-    info_about_reserve = forms.Textarea()
+class ReceptionForm(forms.ModelForm):
 
+    class Meta:
+        model = Reception
+        fields = ['date', 'time', 'reserver_name', 'reception_info']
+        widgets = {
+            'date': forms.DateInput(),
+            'time': forms.TimeInput(),
+
+        }

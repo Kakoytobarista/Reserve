@@ -6,7 +6,7 @@ from .views import pageNotFound
 
 urlpatterns = [
     path('main/', index, name='index'),
-    path('main/booking/<int:reserver_id>/', ReceptionView.as_view(), name='reception'),
+    path('booking/<int:reserver_id>/', reserve_room, name='reception'),
 ]
 
 handler404 = pageNotFound

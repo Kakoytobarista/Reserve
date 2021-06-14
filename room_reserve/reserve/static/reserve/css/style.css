@@ -97,7 +97,7 @@ h1 {
 
 .col-5 {
     position: absolute;
-    bottom: 120px;/* Положение от правого края */
+    bottom: 150px;/* Положение от правого края */
     line-height: 1px;
     right: 0;
 
@@ -243,3 +243,12 @@ button:hover::after, button:focus::after {
     width : 100px;
     display: inline-flex;
 }
+
+p {
+
+    display: flex;
+    justify-content: center; /*Центрирование по горизонтали*/
+    align-items: center;
+    font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif
+}
+

@@ -1,18 +1,44 @@
-{% load static %}
+{% load reserve_tags %}
 
-{% block content %}
-<h1>{{ title }}</h1>
-<form action="{% url 'reception' 1 %}" method="post" enctype="multipart/form-data">
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.3/css/all.css">
+    <meta charset="UTF-8">
+    <title>Резерв</title>
+</head>
+<div class="reserve_block">
+<h1>Reserving</h1>
+<form action="{{ p.get_absolute_url }}" method="post" enctype="multipart/form-data">
     {% csrf_token %}
 
     <div class="form-error">{{ form.non_fields_errors }}</div>
 
     {% for f in form %}
-    <p><label class="form_label" for="{{ f.name.id_for_label }}">{{ f.label  }}: </label>{{ f }}</p>
+    <h2><label class="form_label" for="{{ f.name.id_for_label }}">{{ f.label }}: </label>{{ f }}</h2>
     <div class="form-error">{{ f.errors }}</div>
     {% endfor %}
-
-    <button type="submit">Add</button>
+    <button class="btn btn-primary btn-lg active" type="submit">Add</button>
+    <a href="{% url 'index' %}" class="btn btn-secondary btn-lg active" type="button">Go to main page</a>
 
 </form>
-{% endblock %}
+<a href="{ url 'index'}"></a>
+</br></br>
+    </div>
+
+<style>
+    .reserve_block {
+  padding: 50px;
+  background: #ccc;
+  position: fixed; top: 50%; left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+
+    }
+    h1 {
+        text-align: center;
+        padding-bottom: 50px;
+    }
+</style>
+
+

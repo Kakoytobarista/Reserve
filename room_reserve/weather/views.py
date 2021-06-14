@@ -1,9 +1,11 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 
 from weather.forms import WeatherForm
 from .services import *
 
 
+@login_required
 def index(request):
     form = WeatherForm()
     result = ''

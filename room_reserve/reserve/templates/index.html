@@ -11,40 +11,41 @@
     <title>{% block title %}
         {% endblock %}</title>
 </head>
+
 <body>
-    <div>
-        {% block sidebar %}
-        <div class="btn btn-two">
-    <span>Reserve</span>
-  </div>
-        <div class="topnav">
-            <a href="{% url 'logout' %}">Log out</a>
-            <a href="{% url 'password_change'%}">Password change</a>
-            <a href="{% url 'weather_page' %}">Weather</a>
-            <a href="{% url 'workers' %}">Workers</a>
-        </div>
-        {% endblock %}
+<div>
+    <div class="btn btn-two">
+        <span>Reserve</span>
     </div>
-    <div>
+    {% block menu %}
+    <div class="topnav">
+        {% for m in menu %}
+        <a href="{% url m.url_name %}">{{ m.title }}</a>
+        {% endfor %}
+    </div>
+    {% endblock %}
+</div>
+
+<div>
         <span>
         <h1><strong>This microservice <br> is made <br> exclusively for <br>booking meeting <br> rooms.</strong></h1>
             <div class="col-5"><img src="{% static 'reserve/img/logo.svg' %}" alt="logo">
             </div>
         </span>
-        <div class="wrap">
-            <form action="/booking">
+    <div class="wrap">
+        <form action="{% url 'reserving' %}">
             <button class="button">Book now</button>
-            </form>
-        </div>
-        <div>
-            <h1><strong>Available meeting <br> rooms:</strong></h1>
-            <ol class="ball">
-                {% get_rooms as rooms %}
-                {% for r in rooms %}
-                <li><a href="{{ r.get_absolute_url }}">{{ r }}</a></li>
-                {% endfor %}
-            </ol>
-        </div>
+        </form>
     </div>
+    <div>
+        <h1><strong>Available meeting <br> rooms:</strong></h1>
+        <ol class="ball">
+            {% get_rooms as rooms %}
+            {% for r in rooms %}
+            <li><a href="{{ r.get_absolute_url }}">{{ r }}</a></li>
+            {% endfor %}
+        </ol>
+    </div>
+</div>
 </body>
 </html>

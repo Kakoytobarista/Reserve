@@ -17,7 +17,7 @@ def what_weather(city):
         city_id = data['list'][0]['id']
 
     except Exception as e:
-        return str(e)
+        return "ha ha classic"
 
     try:
         res = requests.get("http://api.openweathermap.org/data/2.5/weather",
@@ -37,4 +37,4 @@ def what_weather(city):
             return f'Temperature: {temperature}, Min Temperature: {temp_min}, Max Temperature: {temp_max}'
 
     except Exception as e:
-        return str(e)
+        return "ha ha classic"

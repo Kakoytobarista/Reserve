@@ -1,9 +1,9 @@
 from django.urls import path, include
 from django.contrib.auth import views
-
+from .views import *
 
 urlpatterns = [
-    path('', views.LoginView.as_view(template_name='accounts/login_form.html'), name='login'),
+    path('', LoginPage.as_view(), name='login'),
     path('logout/', views.LogoutView.as_view(template_name='accounts/logged_out.html'), name='logout'),
     path('password-reset/', views.PasswordResetView.as_view(template_name='accounts/password_reset_form.html'), name='password_reset'),
     path('password-reset/done/', views.PasswordResetDoneView.as_view(template_name='accounts/password_reset_complete.html'), name='password_reset_done'),

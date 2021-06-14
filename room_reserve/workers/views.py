@@ -1,25 +1,29 @@
 from django.http import HttpResponseNotFound, Http404
 from django.shortcuts import render, HttpResponse, get_object_or_404, redirect
+from django.urls import reverse_lazy
+from django.views.generic import ListView, DetailView, CreateView
+from django.contrib.auth.mixins import LoginRequiredMixin
 
+
+from .utils import *
 from .forms import *
 from .models import *
 
-menu = [
-    {'title': 'About this app', 'url_name': 'about'},
-    {'title': 'Add worker', 'url_name': 'add_page'},
-    {'title': 'Feedback', 'url_name': 'contact'},
-    {'title': 'Back to page reserve', 'url_name': 'index'},
-]
 
+class WorkersHome(DataMixin, ListView):
+    model = Workers
+    template_name = 'workers/index.html'
+    context_object_name = 'posts'
+    extra_context = {'title': 'Workers page'}
 
-def index(request):
-    context = {
-        'title': 'Главная страница',
-        'menu': menu,
-        'cat_selected': 0,
-    }
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        c_def = self.get_user_context(title='Workers page')
 
-    return render(request, 'workers/index.html', context=context)
+        return dict(list(context.items()) + list(c_def.items()))
+
+    def get_queryset(self):
+        return Workers.objects.filter(is_published=True)
 
 
 def about(request):
@@ -30,21 +34,16 @@ def about(request):
     return render(request, 'workers/about.html', context)
 
 
-def add_page(request):
-    if request.method == "POST":
-        form = AddPostForm(request.POST, request.FILES)
-        if form.is_valid():
+class AddPage(DataMixin, CreateView):
+    form_class = AddPostForm
+    template_name = 'workers/add_page.html'
+    success_url = reverse_lazy('workers')
+    login_url = reverse_lazy('login')
 
-            form.save()
-            return redirect('workers')
-
-    else:
-        form = AddPostForm()
-
-    return render(request, 'workers/add_page.html',
-                  {'menu': menu,
-                   'title': 'Add worker',
-                   'form': form})
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        c_def = self.get_user_context(title='Add worker')
+        return dict(list(context.items()) + list(c_def.items()))
 
 
 def contact(request):
@@ -55,27 +54,30 @@ def pageNotFound(request, exception):
     return HttpResponseNotFound('<h1>Page not found</h1>')
 
 
-def show_post(request, post_slug):
-    post = get_object_or_404(Workers, slug=post_slug)
+class ShowPost(DataMixin, DetailView):
+    model = Workers
+    template_name = 'workers/post.html'
+    slug_url_kwarg = 'post_slug'
+    context_object_name = 'post'
 
-    context = {
-        'post': post,
-        'menu': menu,
-        'title': post.title,
-        'cat_selected': post.cat_id,
-
-    }
-
-    return render(request, 'workers/post.html', context=context)
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        c_def = self.get_user_context(title=context['post'])
+        return dict(list(context.items()) + list(c_def.items()))
 
 
-def show_category(request, cat_slug):
-    cat = get_object_or_404(Category, slug=cat_slug)
+class WorkersCategory(DataMixin, ListView):
+    model = Workers
+    template_name = 'workers/index.html'
+    context_object_name = 'posts'
+    allow_empty = False
 
-    context = {
-        'title': 'Отображение по разделам',
-        'menu': menu,
-        'cat_selected': cat.id,
-    }
+    def get_queryset(self):
+        return Workers.objects.filter(cat__slug=self.kwargs['cat_slug'], is_published=True)
 
-    return render(request, 'workers/index.html', context=context)
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        c_def = self.get_user_context(title='Category - ' + str(context['posts'][0].cat),
+                                      cat_selected=context['posts'][0].cat_id)
+
+        return dict(list(context.items()) + list(c_def.items()))

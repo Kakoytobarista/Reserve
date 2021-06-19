@@ -1,3 +1,4 @@
+from django.core.paginator import Paginator
 from django.http import HttpResponseNotFound, Http404
 from django.shortcuts import render, HttpResponse, get_object_or_404, redirect
 from django.urls import reverse_lazy
@@ -14,7 +15,6 @@ class WorkersHome(DataMixin, ListView):
     model = Workers
     template_name = 'workers/index.html'
     context_object_name = 'posts'
-    extra_context = {'title': 'Workers page'}
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -27,9 +27,15 @@ class WorkersHome(DataMixin, ListView):
 
 
 def about(request):
+    contact_list = Workers.objects.all()
+    paginator = Paginator(contact_list, 3)
+
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
     context = {
         'title': 'О работниках',
-        'menu': menu
+        'menu': menu,
+        'page_obj': page_obj,
     }
     return render(request, 'workers/about.html', context)
 
@@ -58,11 +64,11 @@ class ShowPost(DataMixin, DetailView):
     model = Workers
     template_name = 'workers/post.html'
     slug_url_kwarg = 'post_slug'
-    context_object_name = 'post'
+    context_object_name = 'posts'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        c_def = self.get_user_context(title=context['post'])
+        c_def = self.get_user_context(title=context['posts'])
         return dict(list(context.items()) + list(c_def.items()))
 
 

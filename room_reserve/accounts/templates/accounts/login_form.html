@@ -9,23 +9,28 @@
 
         }
     </style>
-<div class="card-body">
-<h4 class="card-title">Log in to your account</h4>
+    <div class="card-body">
+        <h4 id="log_in_text" class="card-title">Log in to your account</h4>
 
-<form method="post">
-{% csrf_token %}
-<input type="hidden" name="next" value="{{ next }}">
+        <form id="auth_form" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="next" value="{{ next }}">
+            {{ form|crispy }}
+            <button type="submit" class="btn btn-primary btn-block">Log in</button>
 
-{{ form|crispy }}
+            <div id="auth_list">
 
-<button type="submit" class="btn btn-primary btn-block">Log in</button>
-    <a href="/password-reset/">Password reset</a>
-    <style>
-        a {
-            margin-left: 100px;
-        }
-    </style>
-</form>
-</div>
+                <a id="password_reset" href="{% url 'password_reset' %}">Forgot Username/Password?</a>
+                <br/>
+                <a id="register" href="{% url 'register' %}">Create account? Sign up</a>
+
+            </div>
+            <style>
+                a {
+                    margin-left: 100px;
+                }
+            </style>
+        </form>
+    </div>
 </div>
 {% endblock %}

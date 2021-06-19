@@ -50,25 +50,6 @@ class DetailRoom(LoginRequiredMixin, DataMixin, DetailView):
         return dict(list(context.items()) + list(c_def.items()))
 
 
-def reserve_room(request, reserver_id):
-    reserve_room = get_object_or_404(Rooms, id=reserver_id)
-    if request.method == 'POST':
-        form = ReceptionForm(request.POST)
-        if form.is_valid():
-
-            form.save()
-            return redirect('index')
-
-    else:
-        form = ReceptionForm()
-
-    return render(request, 'reserve/reception.html',
-                  {
-                  'form': form,
-                  'room_selected': reserve_room.name,
-                  })
-
-
 def pageNotFound(request, exception):
     return HttpResponseNotFound('<h1>Слушай брат, нахуй ты сюда зашел, иди на правильный редирект,'
                                 '<strong>долбаеб</strong></h1>')

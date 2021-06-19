@@ -2,3 +2,39 @@ img {
     position: center;
     margin-left: 125px;
 }
+
+#auth_form {
+    padding-top: 20px;
+}
+
+#log_in_text {
+    text-align: center;
+}
+
+#auth_list {
+    text-align: center;
+    padding-top: 20px;
+
+}
+
+#password_reset {
+    margin: 0;
+
+}
+
+#register {
+    margin: 0;
+    position: center;
+
+}
+
+
+#reset_password_text {
+    text-align: center;
+
+}
+
+#reset_form {
+    padding-top: 20px;
+
+}

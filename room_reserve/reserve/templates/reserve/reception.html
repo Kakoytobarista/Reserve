@@ -13,6 +13,21 @@
 
     <div class="form-error">{{ form.non_fields_errors }}</div>
 
+    {% if curr_date and not message %}
+      <div id="answer" align="center">
+          <h3>You have reserved a room <b>{{ curr_reserver }}</b><br>
+            on {{curr_date}} {{curr_time}}
+        </h3>
+      </div>
+    {% endif %}
+
+      {% if message %}
+        <div id="answer" align="center">
+          <h3>{{message}}</h3>
+        </div>
+      {% endif %}
+
+
     {% for f in form %}
     <h2><label class="form_label" for="{{ f.name.id_for_label }}">{{ f.label }}: </label>{{ f }}</h2>
     <div class="form-error">{{ f.errors }}</div>
@@ -38,6 +53,10 @@
     h1 {
         text-align: center;
         padding-bottom: 50px;
+    }
+
+    #answer {
+        margin-bottom: 30px;
     }
 </style>
 

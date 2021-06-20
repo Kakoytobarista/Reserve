@@ -19,7 +19,7 @@ class AddPostForm(forms.ModelForm):
         }
 
     def clean_title(self):
-        title = self.cleander_data['title']
+        title = self.cleaned_data['title']
 
         if len(title) > 200:
             raise ValidationError('Cut this!')

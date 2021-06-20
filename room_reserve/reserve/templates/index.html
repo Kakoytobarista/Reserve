@@ -8,8 +8,8 @@
     <link rel="stylesheet" href="{% static 'reserve/css/style.css' %}">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
     <meta charset="UTF-8">
-    <title>{% block title %}
-        {% endblock %}</title>
+    <title>{{title}}
+    </title>
 </head>
 
 <body>
@@ -22,6 +22,7 @@
         {% for m in menu %}
         <a href="{% url m.url_name %}">{{ m.title }}</a>
         {% endfor %}
+        <a id="feedback" href="{% url 'feedback' %}">Feedback us</a>
     </div>
     {% endblock %}
 </div>
@@ -40,10 +41,13 @@
     <div>
         <h1><strong>Available meeting <br> rooms:</strong></h1>
         <ol class="ball">
+            {% load cache %}
+            {% cache 60 rooms %}
             {% get_rooms as rooms %}
             {% for r in rooms %}
             <li><a href="{{ r.get_absolute_url }}">{{ r }}</a></li>
             {% endfor %}
+            {% endcache %}
         </ol>
     </div>
 </div>

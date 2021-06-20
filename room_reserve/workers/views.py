@@ -1,10 +1,6 @@
-from django.core.paginator import Paginator
-from django.http import HttpResponseNotFound, Http404
-from django.shortcuts import render, HttpResponse, get_object_or_404, redirect
-from django.urls import reverse_lazy
-from django.views.generic import ListView, DetailView, CreateView
-from django.contrib.auth.mixins import LoginRequiredMixin
-
+from django.http import HttpResponseNotFound
+from django.shortcuts import HttpResponse
+from django.views.generic import ListView, DetailView, CreateView, TemplateView, DeleteView, UpdateView
 
 from .utils import *
 from .forms import *
@@ -23,21 +19,18 @@ class WorkersHome(DataMixin, ListView):
         return dict(list(context.items()) + list(c_def.items()))
 
     def get_queryset(self):
-        return Workers.objects.filter(is_published=True)
+        return Workers.objects.filter(is_published=True).select_related('cat')
 
 
-def about(request):
-    contact_list = Workers.objects.all()
-    paginator = Paginator(contact_list, 3)
+class AboutPage(DataMixin, TemplateView):
+    template_name = 'workers/about.html'
+    model = Workers
 
-    page_number = request.GET.get('page')
-    page_obj = paginator.get_page(page_number)
-    context = {
-        'title': 'О работниках',
-        'menu': menu,
-        'page_obj': page_obj,
-    }
-    return render(request, 'workers/about.html', context)
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        c_def = self.get_user_context(title='About')
+
+        return dict(list(context.items()) + list(c_def.items()))
 
 
 class AddPage(DataMixin, CreateView):
@@ -78,12 +71,14 @@ class WorkersCategory(DataMixin, ListView):
     context_object_name = 'posts'
     allow_empty = False
 
-    def get_queryset(self):
-        return Workers.objects.filter(cat__slug=self.kwargs['cat_slug'], is_published=True)
-
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
-        c_def = self.get_user_context(title='Category - ' + str(context['posts'][0].cat),
-                                      cat_selected=context['posts'][0].cat_id)
+        c = Category.objects.get(slug=self.kwargs['cat_slug'])
+        c_def = self.get_user_context(title='Category - ' + str(c.name),
+                                      cat_selected=c.pk)
 
         return dict(list(context.items()) + list(c_def.items()))
+
+    def get_queryset(self):
+        return Workers.objects.filter(cat__slug=self.kwargs['cat_slug'], is_published=True).select_related('cat')
+

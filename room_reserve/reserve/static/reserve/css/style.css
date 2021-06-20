@@ -1,7 +1,12 @@
+
+
 body {
     background: white;
 }
 
+*::-webkit-scrollbar {
+    width: 12px;
+}
 
 .btn {
     margin-left: 80px;
@@ -97,9 +102,11 @@ h1 {
 
 .col-5 {
     position: absolute;
-    bottom: 150px;/* Положение от правого края */
-    line-height: 1px;
+    bottom: 80px;/* Положение от правого края */
+    line-height: 0;
     right: 0;
+    padding-left: 50px;
+
 
 
 }
@@ -234,13 +241,13 @@ button:hover::after, button:focus::after {
     display: inline-block;
     position: relative;
     padding-top: 47px;
-    padding-right: 40px;
+    padding-right: 30px;
 
 
 }
 .topnav a {
     color: black;
-    width : 100px;
+    width : 80px;
     display: inline-flex;
 }
 
@@ -252,3 +259,16 @@ p {
     font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif
 }
 
+#feedback {
+    font-size: 10px;
+    color: darkorange;
+
+}
+
+#feedback:hover {
+    text-decoration: none;
+    size: 20px;
+    font-size: 12px;
+	color: black;
+
+}

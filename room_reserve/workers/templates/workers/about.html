@@ -1,27 +1,20 @@
 {% extends 'workers/base.html' %}
 
 {% block content %}
-<h1>{{title}}</h1>
+<head>
+    <h1>{{title}}</h1>
+</head>
+<body>
+<div>
+    <p>This application is designed to manipulate the employee <br>
+        database. Add an application in that you can <b>add</b>,<br> <b>delete</b>,
+        <b>search</b> in a very fast work format.</p>
+</div>
 
-{% for contact  in page_obj %}
-<p>{{ contact }}</p>
-{% endfor %}
-
-<nav>
-    <ul>
-
-        {% for p in page_obj.paginator.page_range %}
-        <li>
-            <a href="?page={{ p }}">{{ p }}</a>
-
-        </li>
-        {% endfor %}
-
-    </ul>
+</body>
 
 
 </nav>
-
 
 {% endblock %}
 

@@ -1,4 +1,6 @@
 from django.db.models import Count
+from django.core.cache import *
+
 
 from .models import *
 
@@ -6,16 +8,19 @@ menu = [
     {'title': 'About this app', 'url_name': 'about'},
     {'title': 'Add worker', 'url_name': 'add_page'},
     {'title': 'Feedback', 'url_name': 'contact'},
-    {'title': 'Back to page reserve', 'url_name': 'index'},
+    {'title': 'Main page', 'url_name': 'index'},
 ]
 
 
 class DataMixin:
-    paginate_by = 3
+    paginate_by = 2
 
     def get_user_context(self, **kwargs):
         context = kwargs
-        cats = Category.objects.annotate(Count('workers'))
+        cats = cache.get('cats')
+        if not cats:
+            cats = Category.objects.annotate(Count('workers'))
+            cache.set('cats', cats, 60)
 
         user_menu = menu.copy()
         if not self.request.user.is_authenticated:

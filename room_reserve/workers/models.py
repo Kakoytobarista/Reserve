@@ -1,5 +1,6 @@
 from django.db import models
-from django.urls import reverse
+from django.shortcuts import redirect
+from django.urls import reverse, reverse_lazy
 
 
 class Workers(models.Model):
@@ -17,6 +18,11 @@ class Workers(models.Model):
 
     def get_absolute_url(self):
         return reverse('post', kwargs={'post_slug': self.slug})
+
+    def delete_worker(self, pk):
+        worker = Workers.objects.filter(pk=3)
+        return worker.delete()
+
 
     class Meta:
         verbose_name = 'Worker of PM'
@@ -37,4 +43,6 @@ class Category(models.Model):
     class Meta:
         verbose_name = 'Position of work'
         verbose_name_plural = 'Positions of work'
+
+
 

@@ -1,19 +1,26 @@
 {% extends 'base.html' %}
 {% block main %}
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Log out</title>
+</head>
+<body>
 <div class="logout_form">
+    <title>Log out</title>
     <p>You are logged out!</p>
-        <style>
-            .logout_form
-            {
-                text-align: center;
-                padding-top: 70px;
+    <style>
+        .logout_form {
+            text-align: center;
+            padding-top: 70px;
 
-            }
+        }
 
-        </style>
+    </style>
     <a href="{% url 'login' %}">Log in again</a>
 
+    {% endblock %}
 
 </div>
-
-{% endblock %}
+</body>
+</html>

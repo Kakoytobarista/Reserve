@@ -2,10 +2,8 @@ from pathlib import Path
 import os
 import psycopg2.extensions
 
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
@@ -19,9 +17,8 @@ DEBUG = True
 ALLOWED_HOSTS = ['127.0.0.1']
 
 
-# Application definition
-
 INSTALLED_APPS = [
+    'captcha',
     'bootstrap4',
     'accounts',
     'crispy_forms',
@@ -68,7 +65,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'room_reserve.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
@@ -85,7 +81,6 @@ DATABASES = {
 }
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
@@ -105,7 +100,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
@@ -121,7 +115,6 @@ USE_TZ = True
 
 LOGIN_REDIRECT_URL = "/main"
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
@@ -133,3 +126,11 @@ STATICFILES_DIRS = []
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
+        'LOCATION': os.path.join(BASE_DIR, 'reserve_cache')
+    }
+}

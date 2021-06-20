@@ -1,7 +1,6 @@
 {% load static %}
 {% load worker_tags %}
 
-<!DOCTYPE html>
 <head>
     <title>{{title}}</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -30,6 +29,9 @@
 
                     {% endif %}
                     {% endfor %}
+                    {% if request.user.is_authenticated %}
+                    <li id="user_name" title="user name" class="last">{{ user.username }}</li>
+                    {% endif %}
 
                 </ul>
                 <div class="clear"></div>
@@ -43,6 +45,7 @@
                     <td valign="top" class="left-chapters">
 
                         <ul id="leftchapters">
+
                             {% if cat_selected == 0 %}
                             <li class="selected">Все категории</li>
                             {% else %}
@@ -51,11 +54,11 @@
 
                             {% for c in cats %}
                             {% if c.workers__count > 0 %}
-                            {% if c.pk == cat_selected %}
-                            <li class="selected">{{ c.name }}</li>
-                            {% else %}
-                            <li><a href="{{ c.get_absolute_url }}">{{c.name }}</a></li>
-                            {% endif %}
+                                {% if c.pk == cat_selected %}
+                                    <li class="selected">{{ c.name }}</li>
+                                {% else %}
+                                    <li><a href="{{ c.get_absolute_url }}">{{c.name }}</a></li>
+                                {% endif %}
                             {% endif %}
                             {% endfor %}
                             <li class="share">
@@ -64,7 +67,6 @@
                         </ul>
                     </td>
 
-                    <!-- Конец Sidebar'а -->
                     <td valign="top" class="content">
                         <!-- Хлебные крошки -->
                         {% block breadcrumbs %}
@@ -95,7 +97,7 @@
 
                                     {% if page_obj.has_next %}
                                     <li class="page-num">
-                                        <a href="?page{{ page_obj.next_page_number }}">&gt;</a>
+                                        <a href="?page={{ page_obj.next_page_number }}">&gt;</a>
                                     </li>
                                     {% endif %}
                                 </ul>

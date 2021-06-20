@@ -23,3 +23,4 @@ def show_categories(sort=None, cat_selected=0):
         "cats": cats,
         "cat_selected": cat_selected,
     }
+

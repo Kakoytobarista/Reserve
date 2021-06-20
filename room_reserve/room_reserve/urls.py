@@ -11,10 +11,12 @@ urlpatterns = [
     path('', include('accounts.urls')),
     path('', include('reserve.urls'), name='main'),
     path('', include('weather.urls')),
-    path('workers/', include('workers.urls'))
+    path('workers/', include('workers.urls')),
+    path('captcha/', include('captcha.urls')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 if settings.DEBUG:
+
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 handler404 = pageNotFound

@@ -1,26 +1,25 @@
 {% extends 'workers/base.html' %}
-
+{% load worker_tags %}
 {% block content %}
 <ul class="list-articles">
     {% for p in posts %}
     <li>
         <div class="article-panel">
-            <p class="first">Категория: {{p.cat}}</p>
-            <p class="last">Дата: {{p.time_update|date:"d-m-Y H:i:s"}}</p>
+            <p class="first">Category: {{ p.cat }}</p>
+            <p class="last">Date: {{ p.time_update|date:"d-m-Y H:i:s" }}</p>
         </div>
+        <div id="desc_person">
+            {% if p.photo %}
+            <p><img class="img-article-left thumb" src="{{ p.photo.url }}"></p>
+            {% endif %}
 
-        {% if p.photo %}
-        <p><img class="'img-article-left thumb" src="{{ p.photo.url }}" alt="faces"></p>
-        {% endif %}
-
-        <h2>{{p.title}}</h2>
-        {% autoescape on %}
-            {{p.content|linebreaks|truncatewords:50}}
-        {% endautoescape %}
-
-        <div class="clear"></div>
-        <p class="link-read-post"><a href="{{ p.get_absolute_url }}">about person</a></p>
-    </li>
-    {% endfor %}
+            <h2>{{ p.title }}</h2>
+            {% autoescape on %}
+            {{ p.content|linebreaks|truncatewords:50 }}
+            {% endautoescape %}
+            <div class="clear"></div>
+            <p class="link-read-post"><a href="{{ p.get_absolute_url }}">Читать пост</a></p>
+        </div>
+        {% endfor %}
 </ul>
 {% endblock %}

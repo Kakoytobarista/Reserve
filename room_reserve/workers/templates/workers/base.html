@@ -2,10 +2,19 @@
 {% load worker_tags %}
 
 <head>
-    <title>{{title}}</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
     <link type="text/css" href="{% static 'workers/css/styles.css' %}" rel="stylesheet"/>
     <link rel="shortcut icon" href="{% static 'workers/images/pm_logo.png' %}" type="image/x-icon"/>
+    <link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.12.0/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>{{title}}</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <table class="table-page" border=0 cellpadding="0" cellspacing="0">
@@ -16,8 +25,7 @@
             <div class="header">
                 <ul id="mainmenu" class="mainmenu">
                     <li class="logo"><a href="{% url 'workers' %}">
-                        <div class="logo"><img src="{% static 'workers/images/pm_logo.png' %}"></div>
-                    </a></li>
+                        <div class="logo"><img src="{% static 'workers/images/pm_logo.png' %}"></div></a></li>
 
                     {% for m in menu %}
 

@@ -1,63 +1,104 @@
 {% load reserve_tags %}
+{% load static %}
 
 <head>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.3/css/all.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <script type="text/javascript" src="{% static 'reserve/js/clockpicker.js' %}"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.12.0/themes/smoothness/jquery-ui.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'reserve/css/clockpicker.css' %}">
+
     <meta charset="UTF-8">
     <title>Резерв</title>
 </head>
+<body>
+
+
 <div class="reserve_block">
-<h1>Reserving</h1>
-<form action="{{ p.get_absolute_url }}" method="post" enctype="multipart/form-data">
-    {% csrf_token %}
+    <h1>Reserving</h1>
+    <div class="mb-3">
+        <form action="{{ p.get_absolute_url }}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-error">{{ form.non_fields_errors }}</div>
 
-    <div class="form-error">{{ form.non_fields_errors }}</div>
-
-    {% if curr_date and not message %}
-      <div id="answer" align="center">
-          <h3>You have reserved a room <b>{{ curr_reserver }}</b><br>
-            on {{curr_date}} {{curr_time}}
-        </h3>
-      </div>
-    {% endif %}
-
-      {% if message %}
-        <div id="answer" align="center">
-          <h3>{{message}}</h3>
-        </div>
-      {% endif %}
+            {% if curr_date and not message %}
+            <div id="answer" align="center">
+                <h4>You have reserved a room <b>{{ curr_reserver }}</b><br>
+                    on {{curr_date}} {{curr_time}}
+                </h4>
+            </div>
+            {% endif %}
 
 
-    {% for f in form %}
-    <h2><label class="form_label" for="{{ f.name.id_for_label }}">{{ f.label }}: </label>{{ f }}</h2>
-    <div class="form-error">{{ f.errors }}</div>
-    {% endfor %}
-    <button class="btn btn-primary btn-lg active" type="submit">Add</button>
-    <a href="{% url 'index' %}" class="btn btn-secondary btn-lg active" type="button">Go to main page</a>
+            {% if message %}
+            <div id="answer" align="center">
+                <h4>{{message}}</h4>
+            </div>
+            {% endif %}
 
-</form>
-<a href="{ url 'index'}"></a>
-</br></br>
+            {% for f in form %}
+
+            <h3><label class="form_label" for="{{ f.name.id_for_label }}">{{ f.label }}: </label>{{ f }}</h3>
+            <div class="form-error">{{ f.errors }}</div>
+
+            {% endfor %}
+
+            <button class="btn btn-primary btn-lg active" type="submit">Add</button>
+            <a href="{% url 'index' %}" class="btn btn-secondary btn-lg active" type="button">Go to main page</a>
     </div>
+    </form>
+
+    <a href="{ url 'index'}"></a>
+    </br></br>
+</div>
+
+<script>
+    $('#datepicker').datepicker({
+        format: 'mm/dd/yyyy',
+        startDate: '-3d'
+    });
+
+    $('#single-input').clockpicker({
+        placement: 'bottom',
+        align: 'left',
+        autoclose: true,
+        'default': 'now'
+    });
+
+    $('#single-input_two').clockpicker({
+        placement: 'bottom',
+        align: 'left',
+        autoclose: true,
+        'default': 'now'
+    });
+</script>
+
+</body>
 
 <style>
     .reserve_block {
-  padding: 50px;
-  background: #ccc;
-  position: fixed; top: 50%; left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
+
+        position: fixed;
+        top: 54%;
+        left: 50%;
+        -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
 
     }
+
     h1 {
         text-align: center;
-        padding-bottom: 50px;
+        padding-bottom: 5px;
     }
 
     #answer {
         margin-bottom: 30px;
     }
 </style>
-
-

@@ -21,7 +21,8 @@ class Rooms(models.Model):
 
 class Reception(models.Model):
     date = models.DateField(verbose_name='Date of reserve')
-    time = models.CharField(verbose_name='Time', max_length=5)
+    time_since = models.CharField(verbose_name='Time since', max_length=10, null=True)
+    time_until = models.CharField(verbose_name='Time until', max_length=10, null=True)
     reserver_name = models.CharField(verbose_name='Full name', max_length=200)
     reception_info = models.CharField(verbose_name='Info about reserver', max_length=1000)
     reserver = models.ForeignKey(Rooms, verbose_name='Reserver ', on_delete=models.PROTECT)

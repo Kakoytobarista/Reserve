@@ -13,7 +13,7 @@ def get_categories(filter=None):
 
 
 @register.inclusion_tag('workers/list_categories.html')
-def show_categories(sort=None, cat_selected=0):
+def show_categories(sort='name', cat_selected=0):
     if not sort:
         cats = Category.objects.all()
     else:

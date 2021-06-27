@@ -31,7 +31,7 @@ img.img-article-left {
 
 img.img-article-left.thumb {
     max-width: 150px;
-    height: auto;
+
 }
 
 p.link-read-post {
@@ -39,11 +39,12 @@ p.link-read-post {
 }
 
 p.link-read-post a {
-    padding: 10px;
     min-width: 100px;
-    background: #333671;
-    color: #fff;
     text-decoration: none;
+    margin-left: 100px;
+    margin-right: 5px;
+    margin-bottom: 0 !important;
+    padding: 5px;
 }
 
 div.article-panel {
@@ -52,6 +53,11 @@ div.article-panel {
     box-sizing border-box;
     overflow: hidden;
     color: #555;
+}
+
+.clear {
+    min-width: 100%;
+
 }
 
 div.article-panel p.first {
@@ -72,6 +78,8 @@ ul.list-articles {
 
 ul.list-articles li {
     border-bottom: 1px solid #ccc;
+    padding-bottom: 5px;
+
 }
 
 .table-page {
@@ -84,9 +92,6 @@ ul.list-articles li {
     height: 100%;
 }
 
-.clear {
-    clear: both;
-}
 
 .header {
     background: whitesmoke;

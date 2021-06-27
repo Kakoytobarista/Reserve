@@ -1,5 +1,5 @@
-from django.http import HttpResponseNotFound
-from django.shortcuts import HttpResponse
+from django.http import HttpResponseNotFound, HttpResponseRedirect
+from django.shortcuts import HttpResponse, get_object_or_404
 from django.views.generic import ListView, DetailView, CreateView, TemplateView, DeleteView, UpdateView
 
 from .utils import *
@@ -19,7 +19,7 @@ class WorkersHome(DataMixin, ListView):
         return dict(list(context.items()) + list(c_def.items()))
 
     def get_queryset(self):
-        return Workers.objects.filter(is_published=True).select_related('cat')
+        return Workers.objects.all().select_related('cat').order_by('-id')
 
 
 class AboutPage(DataMixin, TemplateView):
@@ -43,10 +43,6 @@ class AddPage(DataMixin, CreateView):
         context = super().get_context_data(**kwargs)
         c_def = self.get_user_context(title='Add worker')
         return dict(list(context.items()) + list(c_def.items()))
-
-
-def contact(request):
-    return HttpResponse('Feedback')
 
 
 def pageNotFound(request, exception):
@@ -80,5 +76,29 @@ class WorkersCategory(DataMixin, ListView):
         return dict(list(context.items()) + list(c_def.items()))
 
     def get_queryset(self):
-        return Workers.objects.filter(cat__slug=self.kwargs['cat_slug'], is_published=True).select_related('cat')
+        return Workers.objects.filter(cat__slug=self.kwargs['cat_slug']).select_related('cat')
 
+
+class DeletePost(DataMixin, DeleteView):
+    model = Workers
+    template_name = 'workers/delete_confirm.html'
+    slug_url_kwarg = 'post_slug'
+    success_url = reverse_lazy('workers')
+    context_object_name = 'posts'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        c_def = self.get_user_context(title=context['posts'])
+        return dict(list(context.items()) + list(c_def.items()))
+
+
+class UpdatePost(DataMixin, UpdateView):
+    model = Workers
+    form_class = AddPostForm
+    template_name = 'workers/update_form.html'
+    slug_url_kwarg = 'post_slug'
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        c_def = self.get_user_context(title='Update worker')
+        return dict(list(context.items()) + list(c_def.items()))

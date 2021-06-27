@@ -10,7 +10,9 @@
 
     <details>
         <summary>{{ m }}</summary>
-        <h3> {{ m.date }}, {{ m.time }}, {{ m.reserver_name }}, {{ m.reception_info}}, {{ m.reserver }} </h3>
+        <h3> {{ m.date }}, {{ m.time_since }},
+            {{ m.time_until }}, {{ m.reserver_name }},
+            {{ m.reception_info}}, {{ m.reserver }} </h3>
     </details>
     {% endfor %}
 </div>
@@ -25,7 +27,9 @@
 
     <details>
         <summary>{{ s }}</summary>
-        <h3> {{ s.date }}, {{ s.time }}, {{ s.reserver_name }}, {{ s.reception_info}}, {{ s.reserver }} </h3>
+        <h3> {{ s.date }}, {{ s.time_since }},
+            {{ s.time_until }}, {{ s.reserver_name }},
+            {{ s.reception_info}}, {{ s.reserver }} </h3>
     </details>
 
     {% endfor %}
@@ -40,7 +44,9 @@
 
     <details>
         <summary>{{ n }}</summary>
-        <h3> {{ n.date }}, {{ n.time }}, {{ n.reserver_name }}, {{ n.reception_info}}, {{ n.reserver }} </h3>
+        <h3> {{ n.date }}, {{ n.time_since }}, {{ n.time_until }},
+            {{ n.reserver_name }}, {{ n.reception_info }},
+            {{ n.reserver }} </h3>
     </details>
 
     {% endfor %}

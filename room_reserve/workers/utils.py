@@ -7,13 +7,13 @@ from .models import *
 menu = [
     {'title': 'About this app', 'url_name': 'about'},
     {'title': 'Add worker', 'url_name': 'add_page'},
-    {'title': 'Feedback', 'url_name': 'contact'},
     {'title': 'Main page', 'url_name': 'index'},
 ]
 
 
 class DataMixin:
-    paginate_by = 2
+    paginate_by = 4
+    ordering = ['id']
 
     def get_user_context(self, **kwargs):
         context = kwargs

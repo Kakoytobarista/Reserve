@@ -1,0 +1,124 @@
+{% load reserve_tags %}
+
+
+{% if room.slug == 'moscow' %}
+<div id="moscow_room" xmlns="http://www.w3.org/1999/html">
+    <title>{{ room.name|title }}</title>
+    <h1 id="room_name">{{ room.name|title }}</h1>
+    {% get_moscow_reserve as moscow %}
+    {% for m in moscow %}
+
+    <details>
+        <summary>{{ m }}</summary>
+        <h3> {{ m.date }}, {{ m.time_since }},
+            {{ m.time_until }}, {{ m.reserver_name }},
+            {{ m.reception_info}}, {{ m.reserver }} </h3>
+    </details>
+    {% endfor %}
+</div>
+
+
+{% elif room.slug == 'saint_petesburg' %}
+<div id="saint_p_room">
+    <title>{{ room.name|title }}</title>
+    <h1 id="room_name">{{ room.name|title }}</h1>
+    {% get_saintp_reserve as saintp %}
+    {% for s in saintp %}
+
+    <details>
+        <summary>{{ s }}</summary>
+        <h3> {{ s.date }}, {{ s.time_since }},
+            {{ s.time_until }}, {{ s.reserver_name }},
+            {{ s.reception_info}}, {{ s.reserver }} </h3>
+    </details>
+
+    {% endfor %}
+</div>
+
+{% elif room.slug == 'nizhniy_novgorod' %}
+<div id="nizhniy_room">
+    <title>{{ room.name|title }}</title>
+    <h1 id="room_name">{{ room.name|title }}</h1>
+    {% get_nizhniy_reserve as nighniy %}
+    {% for n in nighniy %}
+
+    <details>
+        <summary>{{ n }}</summary>
+        <h3> {{ n.date }}, {{ n.time_since }}, {{ n.time_until }},
+            {{ n.reserver_name }}, {{ n.reception_info }},
+            {{ n.reserver }} </h3>
+    </details>
+
+    {% endfor %}
+</div>
+
+{% endif %}
+
+<style>
+
+    *::-webkit-scrollbar {
+        width: 12px;
+    }
+
+    summary {
+        cursor: pointer;
+    }
+
+    details {
+        position: relative;
+
+    }
+
+    details summary::-webkit-details-marker {
+        display: none;
+    }
+
+    summary {
+        width: 100%;
+        padding: 20px;
+        padding-left: 25px;
+        border-bottom: 1px solid #ccc;
+    }
+
+    summary:hover {
+        color: #007bff;
+    }
+
+    summary:focus {
+        outline: none;
+    }
+
+    details[open] summary:before {
+        transform: rotate(90deg);
+    }
+
+    details[open] > summary {
+        color: #007bff;
+    }
+
+    details[open] > summary ~ * {
+        animation: open 1s ease;
+    }
+
+
+    @keyframes open {
+        0% {
+            opacity: 0;
+        }
+
+        100% {
+            opacity: 1;
+        }
+    }
+
+
+    #room_name {
+        text-align: center;
+        border: 1px solid black; /* Параметры рамки */
+        padding: 15px; /* Поля вокруг текста */
+        margin-bottom: 10px; /* Отступ снизу */
+        border-radius: 13em 0.5em/1em 0.5em;
+    }
+
+</style>
+

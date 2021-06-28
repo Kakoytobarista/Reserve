@@ -1,5 +1,5 @@
 from django.db import models
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 
 
 class Workers(models.Model):
@@ -9,7 +9,6 @@ class Workers(models.Model):
     photo = models.ImageField(upload_to='photos/%Y/%m/%d/', verbose_name='Photo')
     time_create = models.DateTimeField(auto_now_add=True, verbose_name='Time creating')
     time_update = models.DateTimeField(auto_now=True, verbose_name='Time changing')
-    is_published = models.BooleanField(default=True, verbose_name='Post')
     cat = models.ForeignKey('Category', on_delete=models.PROTECT, verbose_name='Categories')
 
     def __str__(self):
@@ -34,7 +33,11 @@ class Category(models.Model):
     def get_absolute_url(self):
         return reverse('category', kwargs={'cat_slug': self.slug})
 
+
     class Meta:
         verbose_name = 'Position of work'
         verbose_name_plural = 'Positions of work'
+        ordering = ['-name']
+
+
 

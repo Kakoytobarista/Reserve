@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block main %}
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Registration</title>
+</head>
+<body>
+<div id="register_box">
+    <style>
+        #register_box {
+            margin-top: 30px;
+        }
+    </style>
+    <div id="register_box_card">
+        <h4 id="register_text">Registration</h4>
+        <form id="register_form" method="post">
+
+
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="btn btn-primary btn-block" type="submit">Registration</button>
+
+        </form>
+        <a id="url_login_page" href="{% url 'login' %}">Back to login page</a>
+    </div>
+</div>
+</body>
+{% endblock %}

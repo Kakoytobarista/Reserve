@@ -7,44 +7,50 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="{% static 'reserve/css/style.css' %}">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <!-- Latest compiled and minified CSS -->
+
     <meta charset="UTF-8">
-    <title>{% block title %}
-        {% endblock %}</title>
+    <title>{{title}}
+    </title>
 </head>
+
 <body>
-    <div>
-        {% block sidebar %}
-        <div class="btn btn-two">
-    <span>Reserve</span>
-  </div>
-        <div class="topnav">
-            <a href="{% url 'logout' %}">Log out</a>
-            <a href="{% url 'password_change'%}">Password change</a>
-            <a href="{% url 'weather_page' %}">Weather</a>
-            <a href="{% url 'workers' %}">Workers</a>
-        </div>
-        {% endblock %}
+<div>
+    <div class="btn btn-two">
+        <span>Reserve</span>
     </div>
+    {% block menu %}
+    <div class="topnav">
+        {% for m in menu %}
+        <a href="{% url m.url_name %}">{{ m.title }}</a>
+        {% endfor %}
+        <a id="feedback" href="{% url 'feedback' %}">Feedback us</a>
+    </div>
+    {% endblock %}
+</div>
+
+<div>
     <div>
-        <span>
         <h1><strong>This microservice <br> is made <br> exclusively for <br>booking meeting <br> rooms.</strong></h1>
-            <div class="col-5"><img src="{% static 'reserve/img/logo.svg' %}" alt="logo">
-            </div>
-        </span>
-        <div class="wrap">
-            <form action="/booking">
-            <button class="button">Book now</button>
-            </form>
-        </div>
-        <div>
-            <h1><strong>Available meeting <br> rooms:</strong></h1>
-            <ol class="ball">
-                {% get_rooms as rooms %}
-                {% for r in rooms %}
-                <li><a href="{{ r.get_absolute_url }}">{{ r }}</a></li>
-                {% endfor %}
-            </ol>
-        </div>
+        <div class="col-5"><img src="{% static 'reserve/img/logo.svg' %}" alt="logo"></div>
     </div>
+    <div class="wrap">
+        <form action="{% url 'reserving' %}">
+            <button class="button">Book now</button>
+        </form>
+    </div>
+    <div>
+        <h1><strong>Available meeting <br> rooms:</strong></h1>
+        <ol class="ball">
+            {% load cache %}
+            {% cache 60 rooms %}
+            {% get_rooms as rooms %}
+            {% for r in rooms %}
+            <li><a href="{{ r.get_absolute_url }}">{{ r }}</a></li>
+            {% endfor %}
+            {% endcache %}
+        </ol>
+    </div>
+</div>
 </body>
 </html>

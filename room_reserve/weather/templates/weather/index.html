@@ -6,20 +6,26 @@
 </head>
 <body>
 
-    <link rel="stylesheet" href="{% static 'weather/css/styles.css' %}">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <div class="action-counter"><img src="{% static 'weather/img/cloud.png' %}" alt="logo_weather"></div>
-    <div class="result_text"><h1>{{ weather }}</h1>
+<link rel="stylesheet" href="{% static 'weather/css/styles.css' %}">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/fontawesome.min.css">
+<link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.12.0/themes/smoothness/jquery-ui.css">
+
+<div class="action-counter"><img src="{% static 'weather/img/cloud.png' %}" alt="logo_weather"></div>
+<div class="result_text"><h2>{{ weather }}</h2>
+</div>
+<form action="{% url 'weather_page' %}" method="post">
+
+    {% csrf_token %}
+    {{ form.as_p }}
+    <div class='button_case'>
+        <button class='btn btn-primary' type="submit">Search</button>
+        <a href="{% url 'index' %}" class="btn btn-secondary" type="button">Go to main page</a>
     </div>
-    <form action="{% url 'weather_page' %}" method="post">
 
-        {% csrf_token %}
-        {{ form.as_p }}
-        <div class='button_case'>
-            <button class='btn btn-primary' type="submit">Search</button>
-            <a href="{% url 'index' %}" class="btn btn-primary" type="button">Go to main page</a>
-        </div>
-
-    </form>
+</form>
 
 </body>

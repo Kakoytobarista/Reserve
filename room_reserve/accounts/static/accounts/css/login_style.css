@@ -2,3 +2,137 @@ img {
     position: center;
     margin-left: 125px;
 }
+
+#auth_form {
+    padding-top: 20px;
+}
+
+#log_in_text {
+    text-align: center;
+}
+
+#auth_list {
+    text-align: center;
+    padding-top: 20px;
+
+}
+
+#password_reset {
+    margin: 0;
+
+}
+
+#register {
+    margin: 0;
+    position: center;
+
+}
+
+
+#reset_password_text {
+    text-align: center;
+
+}
+
+#reset_form {
+    padding-top: 20px;
+
+}
+
+#url_login_page {
+    padding-left: 90px;
+    padding-top: 15px;
+
+}
+
+body {
+    margin: 0;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    text-align: left;
+    background-color: #fff;
+}
+
+#register_box {
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0, 0, 0, .125);
+    border-radius: .25rem;
+
+}
+
+#register_box_card {
+    -webkit-box-flex: 1;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    padding: 1.25rem;
+
+}
+
+#register_form {
+
+    display: block;
+    margin-top: 0;
+    margin-block-end: 1em;
+    padding-top: 15px;
+}
+
+label {
+    display: inline-block;
+    margin-bottom: .5rem;
+}
+
+
+button {
+    margin: 0;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+}
+
+label {
+    display: inline-block;
+    margin-bottom: .5rem;
+}
+
+
+#register_text {
+    text-align: center;
+
+}
+
+input {
+    display: block;
+    width: 100%;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+*, ::after, ::before {
+    box-sizing: border-box;
+}
+
+.card {
+    margin-top: 20px;
+
+}

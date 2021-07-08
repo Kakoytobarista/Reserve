@@ -25,5 +25,5 @@ def get_saintp_reserve():
 
 
 @register.simple_tag()
-def get_nizhniy_reserve():
+def get_samara():
     return Reception.objects.filter(reserver=3)

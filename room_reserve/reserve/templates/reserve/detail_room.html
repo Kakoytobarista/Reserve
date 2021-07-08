@@ -1,7 +1,7 @@
 {% load reserve_tags %}
 
 
-{% if room.slug == 'moscow' %}
+{% if room.name == 'Moscow' %}
 <div id="moscow_room" xmlns="http://www.w3.org/1999/html">
     <title>{{ room.name|title }}</title>
     <h1 id="room_name">{{ room.name|title }}</h1>
@@ -18,7 +18,7 @@
 </div>
 
 
-{% elif room.slug == 'saint_petesburg' %}
+{% elif room.name == 'Saint-Petersburg' %}
 <div id="saint_p_room">
     <title>{{ room.name|title }}</title>
     <h1 id="room_name">{{ room.name|title }}</h1>
@@ -35,18 +35,18 @@
     {% endfor %}
 </div>
 
-{% elif room.slug == 'nizhniy_novgorod' %}
-<div id="nizhniy_room">
+{% elif room.name == 'Samara' %}
+<div id="Samara">
     <title>{{ room.name|title }}</title>
     <h1 id="room_name">{{ room.name|title }}</h1>
-    {% get_nizhniy_reserve as nighniy %}
-    {% for n in nighniy %}
+    {% get_samara as samara %}
+    {% for s in samara %}
 
     <details>
-        <summary>{{ n }}</summary>
-        <h3> {{ n.date }}, {{ n.time_since }}, {{ n.time_until }},
-            {{ n.reserver_name }}, {{ n.reception_info }},
-            {{ n.reserver }} </h3>
+        <summary>{{ s }}</summary>
+        <h3> {{ s.date }}, {{ s.time_since }}, {{ s.time_until }},
+            {{ s.reserver_name }}, {{ s.reception_info }},
+            {{ s.reserver }} </h3>
     </details>
 
     {% endfor %}

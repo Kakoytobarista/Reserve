@@ -46,3 +46,6 @@ reserve_cache/e380ace569e078ada6f7912b413b2e4c.djcache
 reserve_cache/ee8aae7145bc768512b818b584a1a2a8.djcache
 reserve_cache/f15e64e5730a1250dd13b23f32af8dc3.djcache
 .gitignore
+.idea/
+..venv/
+media/

@@ -104,12 +104,14 @@ h1 {
     position: absolute;
     top: 120px;
     right: 0;
+    padding-left: 150px;
 
 
 
 }
 
 .button {
+    margin-right: 100px;
     margin-top: 80px;
     width: 500px;
     margin-left: 450px;
@@ -130,7 +132,6 @@ h1 {
     cursor: pointer;
     outline: none;
     position: relative;
-    padding: 10px;
     }
 
 button::before {
